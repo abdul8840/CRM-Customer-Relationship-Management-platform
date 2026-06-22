@@ -1,0 +1,9 @@
+<!doctype html><html><body style="font-family:Arial,sans-serif;padding:40px;background:#f5f7fb">
+  <div style="max-width:600px;margin:auto;background:#fff;padding:32px;border-radius:12px">
+    <h2>Invoice {{invoice_number}}</h2>
+    <p>Amount: <strong>{{currency}} {{total}}</strong></p>
+    <p>Status: {{status}}</p>
+    <p>Due: {{due_date}}</p>
+    {{#if pdf_url}}<a href="{{pdf_url}}" style="color:#1d4ed8">Download PDF</a>{{/if}}
+  </div>
+</body></html>
