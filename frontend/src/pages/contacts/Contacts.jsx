@@ -26,7 +26,7 @@ const schema = z.object({
   email: z.string().email().or(z.literal('')).optional(),
   phone: z.string().optional(), mobile: z.string().optional(),
   job_title: z.string().optional(), department: z.string().optional(),
-  company_id: z.coerce.number().optional().or(z.literal('')),
+  company_id: z.preprocess((v) => (v === '' || v === null || v === undefined ? null : Number(v)), z.number().int().nullable().optional()),
   source: z.string().optional(), notes: z.string().optional(),
 });
 

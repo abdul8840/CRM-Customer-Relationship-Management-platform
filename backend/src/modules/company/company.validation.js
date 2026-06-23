@@ -1,7 +1,7 @@
 const Joi = require('joi');
 exports.create = Joi.object({
   name: Joi.string().min(2).max(200).required(),
-  website: Joi.string().uri().allow('', null),
+  website: Joi.string().allow('', null),
   industry: Joi.string().max(100).allow('', null),
   size: Joi.string().valid('1-10', '11-50', '51-200', '201-500', '501-1000', '1000+').allow(null),
   annual_revenue: Joi.number().min(0).allow(null),

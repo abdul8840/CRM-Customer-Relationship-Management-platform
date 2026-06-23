@@ -15,7 +15,7 @@ api.interceptors.response.use(
   (r) => r,
   async (err) => {
     const { response, config } = err;
-    if (response?.status === 401 && !config._retry) {
+    if (response?.status === 401 && !config._retry && config.url !== '/auth/refresh') {
       config._retry = true;
       try {
         refreshing = refreshing || useAuthStore.getState().refresh();
