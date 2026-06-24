@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-900: #1e3a8a;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --radius-lg: 0.625rem;
+}
+
+@layer base {
+  :root {
+    --bg: 255 255 255;
+    --fg: 17 24 39;
+    --muted: 243 244 246;
+    --muted-fg: 107 114 128;
+    --border: 229 231 235;
+    --card: 255 255 255;
+    --primary: 37 99 235;
+    --primary-fg: 255 255 255;
+    --danger: 220 38 38;
+    --success: 22 163 74;
+  }
+  .dark {
+    --bg: 15 23 42;
+    --fg: 248 250 252;
+    --muted: 30 41 59;
+    --muted-fg: 148 163 184;
+    --border: 51 65 85;
+    --card: 24 34 54;
+    --primary: 59 130 246;
+    --primary-fg: 255 255 255;
+    --danger: 248 113 113;
+    --success: 74 222 128;
+  }
+  html, body { @apply h-full; }
+  body { background: rgb(var(--bg)); color: rgb(var(--fg)); }
+  * { border-color: rgb(var(--border)); }
+}
+
+@layer utilities {
+  .bg-app { background: rgb(var(--bg)); }
+  .bg-card { background: rgb(var(--card)); }
+  .bg-muted { background: rgb(var(--muted)); }
+  .text-fg { color: rgb(var(--fg)); }
+  .text-muted-fg { color: rgb(var(--muted-fg)); }
+  .border-base { border-color: rgb(var(--border)); }
+  .ring-brand { box-shadow: 0 0 0 3px rgb(var(--primary) / 0.25); }
+  .scrollbar-thin::-webkit-scrollbar { width: 8px; height: 8px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: rgb(var(--border)); border-radius: 999px; }
+}
