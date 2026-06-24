@@ -9,15 +9,10 @@ const ApiResponse = require('../../utils/ApiResponse');
 const checkout = Joi.object({ plan_id: Joi.number().integer().required() });
 const verify = Joi.object({
   order_id: Joi.string().required(),
-  payment_id: Joi.string().required(),
-  signature: Joi.string().required(),
-  plan_id: Joi.number().integer().required(),
-});
-
-const verify = Joi.object({
   subscription_id: Joi.string().required(),
   payment_id: Joi.string().required(),
   signature: Joi.string().required(),
+  plan_id: Joi.number().integer().required(),
 });
 
 router.get('/plans', asyncHandler(async (_req, res) => res.json(new ApiResponse(200, await svc.listPlans()))));

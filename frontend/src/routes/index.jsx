@@ -20,6 +20,7 @@ import Profile from '@/pages/profile/Profile';
 import Billing from '@/pages/billing/Billing';
 import Notifications from '@/pages/notifications/Notifications';
 import Support from '@/pages/support/Support';
+import NotFound from '@/pages/NotFound';
 
 export default function AppRoutes() {
   return (
@@ -44,7 +45,7 @@ export default function AppRoutes() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/support" element={<Support />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

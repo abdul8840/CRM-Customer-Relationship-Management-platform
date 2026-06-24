@@ -17,6 +17,7 @@ import Tickets from '@/pages/Tickets';
 import Faqs from '@/pages/Faqs';
 import Announcements from '@/pages/Announcements';
 import Settings from '@/pages/Settings';
+import NotFound from '@/pages/NotFound';
 
 export default function AppRoutes() {
   return (
@@ -40,7 +41,7 @@ export default function AppRoutes() {
         <Route path="/announcements" element={<Announcements />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
