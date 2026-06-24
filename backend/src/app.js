@@ -52,6 +52,7 @@ app.use(`${API}/faqs`, require('./modules/faq/faq.routes'));
 app.use(`${API}/announcements`, require('./modules/announcement/announcement.routes'));
 app.use(`${API}/settings`, require('./modules/setting/setting.routes'));
 app.use(`${API}/dashboard`, require('./modules/dashboard/dashboard.routes'));
+app.use(`${API}/admin`, require('./modules/admin/admin.routes'));
 
 app.use(notFound);
 app.use(errorHandler);
