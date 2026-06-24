@@ -14,6 +14,12 @@ const verify = Joi.object({
   plan_id: Joi.number().integer().required(),
 });
 
+const verify = Joi.object({
+  subscription_id: Joi.string().required(),
+  payment_id: Joi.string().required(),
+  signature: Joi.string().required(),
+});
+
 router.get('/plans', asyncHandler(async (_req, res) => res.json(new ApiResponse(200, await svc.listPlans()))));
 
 router.use(authenticate);
@@ -26,5 +32,6 @@ router.post('/cancel', asyncHandler(async (req, res) =>
   res.json(new ApiResponse(200, await svc.cancel(req.user)))));
 router.get('/invoices', asyncHandler(async (req, res) => res.json(new ApiResponse(200, await svc.invoices(req.user)))));
 router.get('/payments', asyncHandler(async (req, res) => res.json(new ApiResponse(200, await svc.payments(req.user)))));
+
 
 module.exports = router;

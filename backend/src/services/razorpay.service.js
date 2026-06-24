@@ -23,4 +23,11 @@ module.exports = {
     const expected = crypto.createHmac('sha256', process.env.RAZORPAY_WEBHOOK_SECRET).update(body).digest('hex');
     return expected === signature;
   },
+
+  verifySubscriptionSignature: ({ subscription_id, payment_id, signature }) => {
+  const body = `${payment_id}|${subscription_id}`;
+  const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
+  return expected === signature;
+},
 };
+
