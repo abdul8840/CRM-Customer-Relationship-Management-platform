@@ -36,4 +36,10 @@ const init = (httpServer) => {
 const emitToUser = (userId, event, data) => io?.to(`user:${userId}`).emit(event, data);
 const emitToAll = (event, data) => io?.emit(event, data);
 
-module.exports = { init, emitToUser, emitToAll };
+const close = () => new Promise((resolve) => {
+  if (!io) return resolve();
+  io.disconnectSockets(true);
+  io.close(() => resolve());
+});
+
+module.exports = { init, emitToUser, emitToAll, close };

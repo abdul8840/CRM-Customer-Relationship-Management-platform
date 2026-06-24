@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const Handlebars = require('handlebars');
 const swaggerUi = require('swagger-ui-express');
+const { init: initSentry } = require('./config/sentry');
 
 const swaggerSpec = require('./config/swagger');
 const { apiLimiter } = require('./middleware/rateLimit.middleware');
@@ -33,6 +34,8 @@ app.use(helmet({
 }));
 app.use(cors({ origin: (process.env.CORS_ORIGINS || '').split(',').filter(Boolean), credentials: true }));
 app.use(compression());
+
+const sentry = initSentry(app);
 
 const API = process.env.API_PREFIX || '/api/v1';
 
