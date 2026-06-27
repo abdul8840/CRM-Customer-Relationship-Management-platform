@@ -10,9 +10,11 @@ const OTP_WINDOW_MIN = 60;
 module.exports = {
   async assertLoginAllowed(email) {
     const since = new Date(Date.now() - LOCK_WINDOW_MIN * 60 * 1000);
+    const { User } = require('../models');
+    const user = await User.findOne({ where: { email }, attributes: ['id'] });
+    if (!user) return; // unknown email — let auth controller return 401
     const failures = await LoginHistory.count({
-      include: [{ model: require('../models').User, as: 'user', where: { email }, required: true }],
-      where: { status: 'failed', created_at: { [Op.gte]: since } },
+      where: { user_id: user.id, status: 'failed', created_at: { [Op.gte]: since } },
     });
     if (failures >= MAX_LOGIN_ATTEMPTS)
       throw new ApiError(429, `Too many failed attempts. Try again in ${LOCK_WINDOW_MIN} minutes.`);

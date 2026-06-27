@@ -38,6 +38,7 @@ User.hasMany(RefreshToken, { foreignKey: 'user_id', as: 'refreshTokens', onDelet
 RefreshToken.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Otp, { foreignKey: 'user_id', as: 'otps', onDelete: 'CASCADE' });
 User.hasMany(LoginHistory, { foreignKey: 'user_id', as: 'loginHistory' });
+LoginHistory.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(AuditLog, { foreignKey: 'user_id', as: 'auditLogs' });
 
 // ===== CRM associations =====

@@ -62,3 +62,9 @@ export const settingsApi = {
   list: () => api.get('/settings').then((r) => r.data.data),
   update: (key, value) => api.put(`/settings/${key}`, { value }).then((r) => r.data.data),
 };
+export const notificationsApi = {
+  list: () => api.get('/notifications').then((r) => r.data.data),
+  markRead: (id) => api.patch(`/notifications/${id}/read`).then((r) => r.data.data),
+  markAllRead: () => api.patch('/notifications/read-all').then((r) => r.data.data),
+  remove: (id) => api.delete(`/notifications/${id}`).then((r) => r.data.data),
+};

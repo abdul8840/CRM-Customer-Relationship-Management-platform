@@ -1,9 +1,11 @@
 const { Op } = require('sequelize');
 const { User, Role, RefreshToken, Otp, LoginHistory } = require('../../models');
 const ApiError = require('../../utils/ApiError');
-const { signAccess, signRefresh, verifyRefresh, randomToken } = require('../../utils/jwt');
+const { signAccess, signRefresh, verifyRefresh, randomToken, hashToken } = require('../../utils/jwt');
 const { generateOtp } = require('../../utils/otp');
 const { ROLES, OTP_PURPOSE } = require('../../config/constants');
+const brevo = require('../../services/brevo.service');
+const security = require('../../services/security.service');
 
 class AuthService {
     async register({ first_name, last_name, email, phone, password }) {

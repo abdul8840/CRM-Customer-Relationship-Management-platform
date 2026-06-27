@@ -11,10 +11,10 @@ module.exports = {
     await qi.bulkInsert('users', [{
       uuid: uuidv4(),
       first_name: 'Super', last_name: 'Admin',
-      email: 'superadmin@crm.local',
+      email: 'superadmin@crm.com',
       password, role_id: rows[0].id, status: 'active',
       email_verified_at: now, created_at: now, updated_at: now,
     }]);
   },
-  async down(qi) { await qi.bulkDelete('users', { email: 'superadmin@crm.local' }, {}); },
+  async down(qi) { await qi.bulkDelete('users', { email: 'superadmin@crm.com' }, {}); },
 };
